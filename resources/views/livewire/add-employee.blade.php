@@ -1,5 +1,4 @@
-@extends('layouts.app')
-@section('content')
+
 <div class="flex flex-col w-full pl-0 md:p-4 md:space-y-4">
     <header class="w-full shadow-lg bg-white dark:bg-gray-700 items-center h-16 rounded-2xl z-40">
         <div class="relative z-20 flex flex-col justify-center h-full px-3 mx-auto flex-center">
@@ -30,8 +29,7 @@
         </header>
         <div class="overflow-auto h-screen pb-24 pt-2 pr-2 pl-2 md:pt-0 md:pr-0 md:pl-0">
             <div class="flex flex-col flex-wrap sm:flex-row ">
-                Emp page
+                LIVEWIRE EMPLOYEE PAGE
             </div>
         </div>
     </div>
-@endsection
