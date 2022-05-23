@@ -46,6 +46,7 @@ class AddEmployee extends Component
 
     public function render()
     {
-        return view('livewire.add-employee');
+        return view('livewire.add-employee')
+                ->layout('layouts.app', ['title'=>'Add Employee']);
     }
 }
