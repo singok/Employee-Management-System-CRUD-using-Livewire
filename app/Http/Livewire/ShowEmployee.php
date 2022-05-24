@@ -10,22 +10,22 @@ use Illuminate\Support\Facades\Session;
 class ShowEmployee extends Component
 {
     public $data;
-    private $feedback = false;
+    public $deleteID = null;
     public function edit($id)
     {
         dd($id);
     }
 
-    public function delete($id)
+    public function delete()
     {
-        Employee::find($id)->delete();
-        $this->feedback = true;
-        if($this->feedback == true) {
-            Session::flash('success', 'Employee deleted successfully !!!');
-        } else {
-            Session::flash('failure', 'Sorry, not able to delete record !!!');
-        }
-        
+        Employee::find($this->deleteID)->delete();
+        $this->dispatchBrowserEvent('hide-modal');
+    }
+
+    public function deleteConfirm($id)
+    {
+        $this->deleteID = $id;
+        $this->dispatchBrowserEvent('show-modal');
     }
 
     public function render()

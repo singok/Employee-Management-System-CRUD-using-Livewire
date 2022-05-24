@@ -7,6 +7,8 @@
 
         <title>{{$title}}</title>
 
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
@@ -104,6 +106,37 @@
                 </div>
             </main>
         </div>
+
+        <div class="modal fade" id="deleteConfirm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure want to delete ?
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" style="background:black" data-bs-dismiss="modal">Close</button>
+                  <button type="button" wire:click.prevent="dsdfsdf" class="btn btn-danger" style="background: red">Delete</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
         @livewireScripts
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        <script type="text/javascript">
+            window.addEventListener('show-modal', event=>{
+                $('#deleteConfirm').modal('show');
+            });
+            
+            window.addEventListener('hide-modal', event=>{
+                $('$deleteConfirm').modal('hide');
+            });
+        </script>
     </body>
 </html>

@@ -111,7 +111,7 @@
                             </td>
 
                             <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                <svg wire:click="delete({{$info->id}})" class="h-6 w-6 text-red-500 transition-colors duration-200 hover:text-blue-500 cursor-pointer"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <rect x="3" y="4" width="18" height="4" rx="2" />  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />  <line x1="10" y1="12" x2="14" y2="12" /></svg>
+                                <svg wire:click="deleteConfirm({{ $info->id }})" class="h-6 w-6 text-red-500 transition-colors duration-200 hover:text-blue-500 cursor-pointer"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <rect x="3" y="4" width="18" height="4" rx="2" />  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />  <line x1="10" y1="12" x2="14" y2="12" /></svg>
                             </td>
 
 
