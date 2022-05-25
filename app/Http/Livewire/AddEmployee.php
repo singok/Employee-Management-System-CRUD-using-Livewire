@@ -26,6 +26,7 @@ class AddEmployee extends Component
         $this->emp = new Employee();
     }
 
+    // insert employee details
     public function save()
     {
         // validate

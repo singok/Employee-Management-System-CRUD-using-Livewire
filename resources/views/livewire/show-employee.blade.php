@@ -101,7 +101,7 @@
                                 {{ $info->zipcode }}
                             </td>
                             <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                <svg wire:click="edit({{$info->id}})" class="h-6 w-6 text-black-500 transition-colors duration-200 hover:text-blue-500 cursor-pointer" width="24"  height="24"  viewBox="0 0 24 24"  xmlns="http://www.w3.org/2000/svg"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />  <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" /></svg>
+                                <svg wire:click="showEditForm({{$info->id}})" class="h-6 w-6 text-black-500 transition-colors duration-200 hover:text-blue-500 cursor-pointer" width="24"  height="24"  viewBox="0 0 24 24"  xmlns="http://www.w3.org/2000/svg"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />  <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" /></svg>
                             </td>
 
                             <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
@@ -118,6 +118,57 @@
             </div>
 
         </div>
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="updateForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Please update your details !!!</h5>
+                  <button type="button" class="close" data-dismiss="modal" id="cross-button">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                      <label for="firstName" class="col-form-label">First Name:</label>
+                      <input type="text" class="form-control" id="firstName" value="{{ $fname }}">
+                    </div>
+                    <div class="form-group">
+                      <label for="lastName" class="col-form-label">Last Name:</label>
+                      <input type="text" class="form-control" id="lastName" value="{{ $lname }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="emailAddress" class="col-form-label">Email Address:</label>
+                        <input type="text" class="form-control" id="emailAddress" value="{{ $email }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="phoneNumber" class="col-form-label">Phone Number:</label>
+                        <input type="text" class="form-control" id="phoneNumber" value="{{ $phone }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="city" class="col-form-label">City:</label>
+                        <input type="text" class="form-control" id="city" value="{{ $city }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="state" class="col-form-label">State:</label>
+                        <input type="text" class="form-control" id="state" value="{{ $state }}">
+                    </div>                    
+                    <div class="form-group">
+                        <label for="zipCode" class="col-form-label">Zip Code:</label>
+                        <input type="text" class="form-control" id="zipCode" value="{{ $zipcode }}">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" style="background: grey" id="close-button">Close</button>
+                  <button type="button" class="btn btn-primary" style="background: blue">Update</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
         @push('script')
             <script type="text/javascript">
                 $(document).ready(() => {
@@ -125,6 +176,7 @@
                         "progressBar" : true,
                         "positionClass" : "toast-top-right",
                     }
+                    
                 });
                 window.addEventListener('show-success', event=>{
                     toastr.success(event.detail.message);
@@ -132,7 +184,17 @@
                 window.addEventListener('show-error', event=>{
                     toastr.error(event.detail.message);
                 });
+
+                window.addEventListener('show-edit-form', event=> {
+                    $('#updateForm').modal('show');
+                });
+
                 
+                $('#close-button, #cross-button').on('click', function (){
+                    $('#updateForm').modal('hide');
+                });
+
+        
             </script>
         @endpush
     </div>
