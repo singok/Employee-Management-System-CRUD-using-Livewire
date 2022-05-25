@@ -12,14 +12,17 @@ class ShowEmployee extends Component
 {
     public $data = null;
 
-    public $deleteID = null;
-    public $fname = null;
-    public $lname = null;
-    public $email = null;
-    public $phone = null;
-    public $city = null;
-    public $state = null;
-    public $zipcode = null;
+    public $employeeId = null;
+    public $fname, $lname, $email, $phone, $city, $state, $zipcode;
+    protected $rules = [
+        "fname" => "required",
+        "lname" => "required",
+        "email" => "required",
+        "phone" => "required | email",
+        "city" => "required",
+        "state" => "required",
+        "zipcode" => "required"
+    ];
 
     // show update form 
     public function showEditForm($id)
@@ -33,22 +36,45 @@ class ShowEmployee extends Component
         $this->state = $data->state;
         $this->zipcode = $data->zipcode;
 
-        $this->deleteID = $id;
+        $this->employeeId = $id;
 
         // create event 
         $this->dispatchBrowserEvent('show-edit-form');
     }
 
-    // delete employee details
-    public function delete($id)
+    // update employee details
+    public function updateEmployee()
     {
-        $isEmployee = Employee::find($id)->delete();
+        DB::table('employee')->where('id', $this->employeeId)->update([
+            'fname' => $this->fname,
+            'lname' => $this->lname,
+            'email' => $this->email,
+            'phone' => $this->phone,
+            'city' => $this->city,
+            'state' => $this->state,
+            'zipcode' => $this->zipcode
+        ]);
+        //dd($this->fname);
+        $this->dispatchBrowserEvent('update-employee', ['message' => 'Employee Details Updated Successfully !!!']);
+
+    }
+
+    // delete confirm dialogue box
+    public function deleteConfirm($id)
+    {
+        $this->employeeId = $id;
+        $this->dispatchBrowserEvent('delete-modal');
+    }
+
+    // delete employee
+    public function delete()
+    {
+        $isEmployee = Employee::find($this->employeeId)->delete();
         if($isEmployee) {
             $this->dispatchBrowserEvent('show-success', ['message' => 'Employee Deleted Successfully !!!']);
         } else {
             $this->dispatchBrowserEvent('show-error', ['message' => 'Not able to delete employee !!!']);
         }
-        
     }
 
     public function render()

@@ -105,7 +105,7 @@
                             </td>
 
                             <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                <svg wire:click="delete({{ $info->id }})" class="h-6 w-6 text-red-500 transition-colors duration-200 hover:text-blue-500 cursor-pointer"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <rect x="3" y="4" width="18" height="4" rx="2" />  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />  <line x1="10" y1="12" x2="14" y2="12" /></svg>
+                                <svg wire:click="deleteConfirm({{ $info->id }})" class="h-6 w-6 text-red-500 transition-colors duration-200 hover:text-blue-500 cursor-pointer"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <rect x="3" y="4" width="18" height="4" rx="2" />  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />  <line x1="10" y1="12" x2="14" y2="12" /></svg>
                             </td>
 
 
@@ -120,53 +120,97 @@
         </div>
 
 
-        <!-- Modal -->
+        <!-- Update Modal Form -->
         <div class="modal fade" id="updateForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Please update your details !!!</h5>
-                  <button type="button" class="close" data-dismiss="modal" id="cross-button">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                      <label for="firstName" class="col-form-label">First Name:</label>
-                      <input type="text" class="form-control" id="firstName" value="{{ $fname }}">
-                    </div>
-                    <div class="form-group">
-                      <label for="lastName" class="col-form-label">Last Name:</label>
-                      <input type="text" class="form-control" id="lastName" value="{{ $lname }}">
-                    </div>
-                    <div class="form-group">
-                        <label for="emailAddress" class="col-form-label">Email Address:</label>
-                        <input type="text" class="form-control" id="emailAddress" value="{{ $email }}">
-                    </div>
-                    <div class="form-group">
-                        <label for="phoneNumber" class="col-form-label">Phone Number:</label>
-                        <input type="text" class="form-control" id="phoneNumber" value="{{ $phone }}">
-                    </div>
-                    <div class="form-group">
-                        <label for="city" class="col-form-label">City:</label>
-                        <input type="text" class="form-control" id="city" value="{{ $city }}">
-                    </div>
-                    <div class="form-group">
-                        <label for="state" class="col-form-label">State:</label>
-                        <input type="text" class="form-control" id="state" value="{{ $state }}">
-                    </div>                    
-                    <div class="form-group">
-                        <label for="zipCode" class="col-form-label">Zip Code:</label>
-                        <input type="text" class="form-control" id="zipCode" value="{{ $zipcode }}">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" style="background: grey" id="close-button">Close</button>
-                  <button type="button" class="btn btn-primary" style="background: blue">Update</button>
-                </div>
-              </div>
+                    
+                    <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Please update your details !!!</h5>
+                          <button type="button" class="close" data-dismiss="modal" id="cross-button">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                              <label for="firstName" class="col-form-label">First Name:</label>
+                              <input wire:model.defer="fname" type="text" class="form-control" id="firstName">
+                              @error('fname')
+                                    <p class="text-red-500 text-xs italic" style="color:red">Please fill out this field.</p>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                              <label for="lastName" class="col-form-label">Last Name:</label>
+                              <input wire:model.defer="lname" type="text" class="form-control" id="lastName">
+                              @error('lname')
+                                    <p class="text-red-500 text-xs italic" style="color:red">Please fill out this field.</p>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="emailAddress" class="col-form-label">Email Address:</label>
+                                <input wire:model.defer="email" type="text" class="form-control" id="emailAddress">
+                                @error('email')
+                                    <p class="text-red-500 text-xs italic" style="color:red">Please fill out this field.</p>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="phoneNumber" class="col-form-label">Phone Number:</label>
+                                <input wire:model.defer="phone" type="text" class="form-control" id="phoneNumber">
+                                @error('phone')
+                                    <p class="text-red-500 text-xs italic" style="color:red">Please fill out this field.</p>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="city" class="col-form-label">City:</label>
+                                <input wire:model.defer="city" type="text" class="form-control" id="city">
+                                @error('city')
+                                    <p class="text-red-500 text-xs italic" style="color:red">Please fill out this field.</p>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="state" class="col-form-label">State:</label>
+                                <input wire:model.defer="state" type="text" class="form-control" id="state">
+                                @error('state')
+                                    <p class="text-red-500 text-xs italic" style="color:red">Please fill out this field.</p>
+                                @enderror
+                            </div>                    
+                            <div class="form-group">
+                                <label for="zipCode" class="col-form-label">Zip Code:</label>
+                                <input wire:model.defer="zipcode" type="text" class="form-control" id="zipCode">
+                                @error('zipcode')
+                                    <p class="text-red-500 text-xs italic" style="color:red">Please fill out this field.</p>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" style="background: grey" id="close-button">Close</button>
+                          <button wire:click.prevent="updateEmployee" type="button" class="btn btn-primary" style="background: blue">Update</button>
+                        </div>
+                      </div>
+              
             </div>
           </div>
+
+        <!-- Delete Modal Form -->
+        <div class="modal fade" id="deleteConfirmation" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Confirm Delete</h5>
+                <button id="delete-cross-button" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                    Are you sure want to delete Employee ?
+                </div>
+                <div class="modal-footer">
+                <button id="delete-close-button" type="button" class="btn btn-secondary" style="background: grey" data-dismiss="modal">Close</button>
+                <button wire:click.prevent="delete" type="button" class="btn btn-primary" style="background: red">Delete</button>
+                </div>
+            </div>
+            </div>
+        </div>
 
 
         @push('script')
@@ -180,9 +224,11 @@
                 });
                 window.addEventListener('show-success', event=>{
                     toastr.success(event.detail.message);
+                    $('#deleteConfirmation').modal('hide');
                 });
                 window.addEventListener('show-error', event=>{
                     toastr.error(event.detail.message);
+                    $('#deleteConfirmation').modal('hide');
                 });
 
                 window.addEventListener('show-edit-form', event=> {
@@ -194,7 +240,18 @@
                     $('#updateForm').modal('hide');
                 });
 
-        
+                window.addEventListener('update-employee', event=>{
+                    toastr.success(event.detail.message);
+                    $('#updateForm').modal('hide');
+                });
+
+                window.addEventListener('delete-modal', event=>{
+                    $('#deleteConfirmation').modal('show');
+                });
+
+                $('#delete-cross-button, #delete-close-button').on('click', () => {
+                    $('#deleteConfirmation').modal('hide');
+                });
             </script>
         @endpush
     </div>
