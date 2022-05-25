@@ -36,11 +36,10 @@ class AddEmployee extends Component
         $this->feedback = true;
 
         if ($this->feedback == 'true') {
-            Session::flash('success', 'Employee added successfully !!!');
+            $this->dispatchBrowserEvent('employeeAdd', ['message' => 'Employee Added Successfully !!!']);
         } else {
-            Session::flash('failure', 'Not abel to add employee !!!');
+            $this->dispatchBrowserEvent('employeeNotAdd', ['message' => 'Not able to add employee !!!']);
         }
-        return redirect()->route('add.employee');
         
     }
 
