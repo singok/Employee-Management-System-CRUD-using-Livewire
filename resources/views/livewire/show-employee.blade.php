@@ -15,7 +15,7 @@
                             <path d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z">
                             </path>
                         </svg>
-                        <input type="text" class="block w-full py-1.5 pl-10 pr-4 leading-normal rounded-2xl focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 ring-opacity-90 bg-gray-100 dark:bg-gray-800 text-gray-400 aa-input" placeholder="Search"/>
+                        <input wire:model="search" type="text" class="block w-full py-1.5 pl-10 pr-4 leading-normal rounded-2xl focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 ring-opacity-90 bg-gray-100 dark:bg-gray-800 text-gray-400 aa-input" placeholder="Search"/>
                             <div class="absolute right-0 hidden h-auto px-2 py-1 mr-2 text-xs text-gray-400 border border-gray-300 rounded-2xl md:block">
                                 +
                             </div>
@@ -37,7 +37,7 @@
                 <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
             </div>
 
-            <div class="overflow-hidden">
+            <div style="overflow-x:auto; overflow-y:hidden;">
                 <table class="min-w-full text-center">
                 <thead class="border-b bg-gray-800">
                     <tr>
@@ -116,7 +116,9 @@
                 
                 </table>
             </div>
-
+            <div>
+                {{ $data->links() }}
+            </div>
         </div>
 
 
@@ -135,51 +137,41 @@
                             <div class="form-group">
                               <label for="firstName" class="col-form-label">First Name:</label>
                               <input wire:model.defer="fname" type="text" class="form-control" id="firstName">
-                              @error('fname')
-                                    <p class="text-red-500 text-xs italic" style="color:red">Please fill out this field.</p>
-                                @enderror
+                             
                             </div>
                             <div class="form-group">
                               <label for="lastName" class="col-form-label">Last Name:</label>
                               <input wire:model.defer="lname" type="text" class="form-control" id="lastName">
-                              @error('lname')
-                                    <p class="text-red-500 text-xs italic" style="color:red">Please fill out this field.</p>
-                                @enderror
+                              
                             </div>
                             <div class="form-group">
                                 <label for="emailAddress" class="col-form-label">Email Address:</label>
                                 <input wire:model.defer="email" type="text" class="form-control" id="emailAddress">
-                                @error('email')
-                                    <p class="text-red-500 text-xs italic" style="color:red">Please fill out this field.</p>
-                                @enderror
+                               
                             </div>
                             <div class="form-group">
                                 <label for="phoneNumber" class="col-form-label">Phone Number:</label>
                                 <input wire:model.defer="phone" type="text" class="form-control" id="phoneNumber">
-                                @error('phone')
-                                    <p class="text-red-500 text-xs italic" style="color:red">Please fill out this field.</p>
-                                @enderror
+                               
                             </div>
                             <div class="form-group">
                                 <label for="city" class="col-form-label">City:</label>
                                 <input wire:model.defer="city" type="text" class="form-control" id="city">
-                                @error('city')
-                                    <p class="text-red-500 text-xs italic" style="color:red">Please fill out this field.</p>
-                                @enderror
+                               
                             </div>
                             <div class="form-group">
                                 <label for="state" class="col-form-label">State:</label>
-                                <input wire:model.defer="state" type="text" class="form-control" id="state">
-                                @error('state')
-                                    <p class="text-red-500 text-xs italic" style="color:red">Please fill out this field.</p>
-                                @enderror
+                                <select wire:model.defer="state" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="state">
+                                    <option value="">Select</option>
+                                    <option value="Bagmati">Bagmati</option>
+                                    <option value="Gandaki">Gandaki</option>
+                                    <option value="Janakpur">Janakpur</option>
+                                </select>
                             </div>                    
                             <div class="form-group">
                                 <label for="zipCode" class="col-form-label">Zip Code:</label>
                                 <input wire:model.defer="zipcode" type="text" class="form-control" id="zipCode">
-                                @error('zipcode')
-                                    <p class="text-red-500 text-xs italic" style="color:red">Please fill out this field.</p>
-                                @enderror
+                               
                             </div>
                         </div>
                         <div class="modal-footer">

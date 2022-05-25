@@ -33,52 +33,18 @@
                         <div class="shadow-lg rounded-2xl w-74 p-4 bg-white relative overflow-hidden">
                             <div class="w-4/6">
                                 <p class="text-gray-800 text-lg font-medium mb-2">
-                                    Avg
+                                    Total Employee
                                 </p>
                                 <p class="text-gray-400 text-xs">
-                                    Detail is not an obsession, it is the very essence of perfection.
+                                    This details is based on the number of employee present in your organization.
                                 </p>
                                 <p class="text-indigo-500 text-xl font-medium">
-                                    $399
+                                    {{ $employeeCount }}
                                 </p>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="w-full sm:w-1/2 xl:w-1/3">
-                    <div class="mb-4 sm:ml-4 xl:mr-4">
-                        <div class="shadow-lg rounded-2xl w-74 p-4 bg-white relative overflow-hidden">
-                            <div class="w-4/6">
-                                <p class="text-gray-800 text-lg font-medium mb-2">
-                                    Avg
-                                </p>
-                                <p class="text-gray-400 text-xs">
-                                    Detail is not an obsession, it is the very essence of perfection.
-                                </p>
-                                <p class="text-indigo-500 text-xl font-medium">
-                                    $399
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="w-full sm:w-1/2 xl:w-1/3">
-                    <div class="mb-4 sm:ml-4 xl:mr-4">
-                        <div class="shadow-lg rounded-2xl w-74 p-4 bg-white relative overflow-hidden">
-                            <div class="w-4/6">
-                                <p class="text-gray-800 text-lg font-medium mb-2">
-                                    Avg
-                                </p>
-                                <p class="text-gray-400 text-xs">
-                                    Detail is not an obsession, it is the very essence of perfection.
-                                </p>
-                                <p class="text-indigo-500 text-xl font-medium">
-                                    $399
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                </div> 
             </div>
         </div>
     </div>

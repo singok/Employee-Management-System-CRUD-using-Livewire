@@ -10,19 +10,10 @@ use Illuminate\Support\Facades\Session;
 
 class ShowEmployee extends Component
 {
-    public $data = null;
-
     public $employeeId = null;
     public $fname, $lname, $email, $phone, $city, $state, $zipcode;
-    protected $rules = [
-        "fname" => "required",
-        "lname" => "required",
-        "email" => "required",
-        "phone" => "required | email",
-        "city" => "required",
-        "state" => "required",
-        "zipcode" => "required"
-    ];
+
+    public $search = null;
 
     // show update form 
     public function showEditForm($id)
@@ -77,12 +68,22 @@ class ShowEmployee extends Component
         }
     }
 
+    use WithPagination;
     public function render()
     {
         // get employee data
-        $this->data = Employee::all();
+        $searchTerm = "%".$this->search."%";
 
-        return view('livewire.show-employee')
+        $data = Employee::where('fname', 'LIKE', $searchTerm)
+                        ->orwhere('lname', 'LIKE', $searchTerm)
+                        ->orwhere('email', 'LIKE', $searchTerm)
+                        ->orwhere('phone', 'LIKE', $searchTerm)
+                        ->orwhere('city', 'LIKE', $searchTerm)
+                        ->orwhere('state', 'LIKE', $searchTerm)
+                        ->orwhere('zipcode', 'LIKE', $searchTerm)
+                        ->paginate(5);
+
+        return view('livewire.show-employee', ['data' => $data])
                 ->layout('layouts.app', ['title' => 'Show Employee']);
     }
 }
